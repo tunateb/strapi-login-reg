@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "auth-demo"
+    }
+  },
+  "defaultProject": "auth-demo",
+  "cli": {
+    "analytics": "b42c79fa-ecc4-463d-b058-328f9686e17d"
+  }
 }

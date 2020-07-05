@@ -1,0 +1,24 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: slateblue;
+  padding: 0 60px;
+  color: #fff;
+
+  a {
+    text-decoration: none;
+    color: #fff;
+    transition: 200ms ease-in-out;
+    padding: 15px;
+
+    &:hover {
+      background-color: darken(slateblue, 10%);
+    }
+  }
+
+  .app-logo {
+    font-weight: 700;
+  }
+
+}
