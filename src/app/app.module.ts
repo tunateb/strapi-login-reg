@@ -7,9 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { HomeComponent } from './pages/home/home.component';
+import { TweetDetailComponent } from './pages/tweet-detail/tweet-detail.component';
+import { TweetCardComponent } from './components/tweet-card/tweet-card.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, RegisterPageComponent],
+  declarations: [AppComponent, LoginPageComponent, RegisterPageComponent, HomeComponent, TweetDetailComponent, TweetCardComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
