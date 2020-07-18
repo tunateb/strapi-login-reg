@@ -2,18 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserService } from './user.service';
+import { environment as env } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommentService {
-  baseUrl = 'http://localhost:1337/comments';
-
   constructor(private http: HttpClient, private userService: UserService) {}
 
   fetchComments(tweetId: number): Observable<any> {
     return this.http.get(
-      `${this.baseUrl}?tweet=${tweetId}&&_sort=created_at:DESC`
+      `${env.commentsApiURL}?tweet=${tweetId}&&_sort=created_at:DESC`
     );
   }
 
@@ -26,7 +25,7 @@ export class CommentService {
       tweet: tweetId,
     };
 
-    return this.http.post(this.baseUrl, newComment, {
+    return this.http.post(env.commentsApiURL, newComment, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

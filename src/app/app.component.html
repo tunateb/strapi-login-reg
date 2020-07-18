@@ -7,9 +7,18 @@
   </div>
 
   <ng-template #userMenu>
-    <div>Hello, {{ user.username }}</div>
-
-    <a href="#" class="nav-link" (click) = "logout()">Logout</a>
+    <div class="nav-menu">
+      <img
+        [src]="user.profileImgUrl"
+        alt=""
+        class="avatar"
+      />
+      Hello, {{ user.username }}
+    </div>
+    <div>
+      <a routerLink="/profile" class="nav-link">Profile</a>
+      <a href="#" class="nav-link" (click)="logout()">Logout</a>
+    </div>
   </ng-template>
 </nav>
 

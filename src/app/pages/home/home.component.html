@@ -2,8 +2,8 @@
 
 <hr />
 
-<div class="tweet-form" *ngIf = "user">
-  <form (submit) = "postTweet()">
+<div class="tweet-form" *ngIf="user">
+  <form (submit)="postTweet()">
     <div class="form-control">
       <label for="text"
         >Enter tweet
@@ -18,7 +18,35 @@
         ></textarea>
       </label>
     </div>
-    <button class="btn" type="submit" [disabled] = "isFormLoading" > {{isFormLoading ? 'Tweeting...' : 'Tweet'}} </button>
+
+    <div *ngIf="fileList" class="preview-images">
+      <img [src]="img" alt="" *ngFor="let img of imgList" class="preview-image"/>
+    </div>
+    <input
+      class="file-input"
+      type="file"
+      (change)="selectFiles($event)"
+      multiple
+      #imgUpload
+    />
+    <input
+      class="file-input"
+      type="file"
+      (change)="selectMoreFiles($event)"
+      multiple
+      #imgUploadMore
+    />
+
+    
+
+    <button class="btn" type="submit" [disabled]="isFormLoading">
+      {{ isFormLoading ? "Tweeting..." : "Tweet" }}
+    </button>
+
+    <button class="btn" type="button" (click)="imgUpload.click()">
+      Upload Image
+    </button>
+    <button class="btn" type="button" *ngIf = "fileList" (click) = "imgUploadMore.click()"> Add More </button>
   </form>
 </div>
 

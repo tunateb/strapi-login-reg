@@ -8,4 +8,5 @@ export type Tweet = {
   created_at?: string;
   updated_at?: string;
   comments?: Comment[];
+  image?: any;
 };

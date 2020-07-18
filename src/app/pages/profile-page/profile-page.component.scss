@@ -1,0 +1,23 @@
+.profile-card {
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin: auto;
+
+  .profile-img {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+    border: 2px solid slategray;
+    object-fit: contain;
+  }
+
+  .file-input {
+      display: none;
+  }
+}
+

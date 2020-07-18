@@ -8,4 +8,6 @@ export type User = {
   role: object;
   updated_at?: string;
   username: string;
+  profileImgUrl?: string;
+  profileImg?:any
 };

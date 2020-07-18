@@ -10,9 +10,11 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { HomeComponent } from './pages/home/home.component';
 import { TweetDetailComponent } from './pages/tweet-detail/tweet-detail.component';
 import { TweetCardComponent } from './components/tweet-card/tweet-card.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, RegisterPageComponent, HomeComponent, TweetDetailComponent, TweetCardComponent],
+  declarations: [AppComponent, LoginPageComponent, RegisterPageComponent, HomeComponent, TweetDetailComponent, TweetCardComponent, ProfilePageComponent, FileUploadComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

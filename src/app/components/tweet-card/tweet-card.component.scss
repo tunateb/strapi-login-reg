@@ -4,6 +4,51 @@
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
 }
 
-hr {
-    margin: 15px 0;
+.tweet-header {
+  display: flex;
+  align-items: center;
+
+  .tweet-username {
+    font-weight: 700;
+    border-right: 1px solid slategray;
+    padding: 0 10px;
+  }
+
+  .tweet-email {
+    padding: 0 10px;
+    font-weight: 300;
+    font-size: 12px;
+  }
+}
+
+.tweet-content {
+  .tweet-text {
+    margin-bottom: 15px;
+  }
+
+  .tweet-time {
+    font-size: 12px;
+    text-align: right;
+  }
+}
+
+.tweet-reply {
+  font-size: 14px;
+  color: lighten(slategray, 10%);
+  margin-bottom: 10px;
+}
+
+.tweet-images {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .tweet-img {
+    display: block;
+    width: 50%;
+    height: 250px;
+    object-fit: cover;
+    border: 1px solid #000;
+  }
 }

@@ -31,6 +31,7 @@ export class LoginPageComponent implements OnInit {
     this.authService.login(this.form).subscribe((response: AuthResponse) => {
       this.authService.setToken(response.jwt);
       this.userService.setUser(response.user);
+      this.userService.getDetails();
 
       this.isLoading = false;
 
