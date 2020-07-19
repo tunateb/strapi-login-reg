@@ -1,10 +1,10 @@
-<h1>Feed</h1>
+<h1>Feed <i class="fab fa-twitter"></i></h1>
 
 <hr />
 
 <div class="tweet-form" *ngIf="user">
   <form (submit)="postTweet()">
-    <div class="form-control">
+    <div class="form-control relative">
       <label for="text"
         >Enter tweet
         <textarea
@@ -17,10 +17,32 @@
           [(ngModel)]="text"
         ></textarea>
       </label>
+      <div class="upload-btns-wrapper">
+        <button
+          class="btn btn-secondary icon"
+          type="button"
+          (click)="imgUpload.click()"
+        >
+          <i class="fas fa-images"></i>
+        </button>
+        <button
+          class="btn btn-secondary icon"
+          type="button"
+          *ngIf="fileList"
+          (click)="imgUploadMore.click()"
+        >
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
     </div>
 
     <div *ngIf="fileList" class="preview-images">
-      <img [src]="img" alt="" *ngFor="let img of imgList" class="preview-image"/>
+      <img
+        [src]="img"
+        alt=""
+        *ngFor="let img of imgList"
+        class="preview-image"
+      />
     </div>
     <input
       class="file-input"
@@ -37,27 +59,23 @@
       #imgUploadMore
     />
 
-    
-
-    <button class="btn" type="submit" [disabled]="isFormLoading">
-      {{ isFormLoading ? "Tweeting..." : "Tweet" }}
-    </button>
-
-    <button class="btn" type="button" (click)="imgUpload.click()">
-      Upload Image
-    </button>
-    <button class="btn" type="button" *ngIf = "fileList" (click) = "imgUploadMore.click()"> Add More </button>
+    <div>
+      <button class="btn" type="submit" [disabled]="isFormLoading">
+        {{ isFormLoading ? "Tweeting..." : "Tweet" }}
+      </button>
+    </div>
   </form>
 </div>
 
 <div *ngIf="tweets; else loading">
-  <a
-    [routerLink]="'/tweet/' + tweet.id"
-    class="tweet-card"
+  <app-tweet-card
+    [tweet]="tweet"
     *ngFor="let tweet of tweets"
+    (onLike)="likeTweet($event, tweet.id)"
+    (onRetweet)="retweet(tweet.id)"
+    [me] = "user"
   >
-    <app-tweet-card [tweet]="tweet"> </app-tweet-card>
-  </a>
+  </app-tweet-card>
 </div>
 
 <ng-template #loading> <h2>Loading...</h2> </ng-template>

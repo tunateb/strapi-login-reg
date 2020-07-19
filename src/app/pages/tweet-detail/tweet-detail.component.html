@@ -1,5 +1,10 @@
 <div *ngIf="tweet; else loading">
-  <app-tweet-card [tweet]="tweet"></app-tweet-card>
+  <app-tweet-card
+    [tweet]="tweet"
+    [me]="user"
+    (onLike)="likeTweet($event)"
+    (onRetweet)="retweet()"
+  ></app-tweet-card>
 
   <div>
     <form (submit)="postComment()">

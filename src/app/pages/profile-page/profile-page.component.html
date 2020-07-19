@@ -4,16 +4,30 @@
 
 <div *ngIf="user" class="profile-card">
   <img [src]="fileURL || profileImg" alt="avatar" class="profile-img" />
-  <p *ngIf = "selectedFile"> {{selectedFile.name}} </p>
+  <p *ngIf="selectedFile">{{ selectedFile.name }}</p>
   <div>
-    <input type="file" class="file-input" #fileInput (change) = "selectFile($event)" />
+    <input
+      type="file"
+      class="file-input"
+      #fileInput
+      (change)="selectFile($event)"
+    />
     <button class="btn" (click)="fileInput.click()">Select Image</button>
-    <button class="btn" *ngIf = "selectedFile" (click) = "saveImg()">Upload Image</button>
+    <button class="btn" *ngIf="selectedFile" (click)="saveImg()">
+      Upload Image
+    </button>
   </div>
 </div>
 
-<hr>
+<hr />
 
-<div *ngIf = "myTweets">
-  <app-tweet-card [tweet] = "tweet" *ngFor = "let tweet of myTweets"> </app-tweet-card>
+<div *ngIf="myTweets">
+  <app-tweet-card
+    [tweet]="tweet"
+    [me]="user"
+    (onLike)="likeTweet($event, tweet.id)"
+    (onRetweet)="retweet()"
+    *ngFor="let tweet of myTweets"
+  >
+  </app-tweet-card>
 </div>

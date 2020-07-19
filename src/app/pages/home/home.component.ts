@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TweetService } from 'src/app/services/tweet.service';
 import { Tweet } from 'src/app/types/tweet.type';
 import { UserService } from 'src/app/services/user.service';
-
+import { LikeService } from 'src/app/services/like.service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +17,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private tweetService: TweetService,
-    private userService: UserService
+    private userService: UserService,
+    private likeService: LikeService
   ) {}
 
   ngOnInit(): void {
@@ -65,28 +66,19 @@ export class HomeComponent implements OnInit {
   }
 
   selectFiles(event) {
-    if (!this.imgList.length) {
-      this.fileList = Array.from(event.target.files);
-
-      this.fileList.forEach((file) => {
-        const reader = new FileReader();
-
-        reader.onload = (e) => this.imgList.push(e.target.result);
-
-        reader.readAsDataURL(file);
-      });
-    } else {
+    if (this.imgList.length) {
       this.imgList = [];
-      this.fileList = Array.from(event.target.files);
-
-      this.fileList.forEach((file) => {
-        const reader = new FileReader();
-
-        reader.onload = (e) => this.imgList.push(e.target.result);
-
-        reader.readAsDataURL(file);
-      });
     }
+
+    this.fileList = Array.from(event.target.files);
+
+    this.fileList.forEach((file) => {
+      const reader = new FileReader();
+
+      reader.onload = (e) => this.imgList.push(e.target.result);
+
+      reader.readAsDataURL(file);
+    });
   }
 
   selectMoreFiles(event) {
@@ -105,5 +97,19 @@ export class HomeComponent implements OnInit {
 
       reader.readAsDataURL(file);
     });
+  }
+
+  likeTweet(myLike, tweetId: number) {
+    this.tweetService
+      .toggleLike(myLike, tweetId, this.user.id)
+      .subscribe((response) =>
+        this.tweetService
+          .fetchTweet(tweetId)
+          .subscribe((response) => this.tweetService.setTweet(response))
+      );
+  }
+
+  retweet(tweetId: number) {
+    console.log(tweetId);
   }
 }

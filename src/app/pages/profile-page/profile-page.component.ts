@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import { TweetService } from 'src/app/services/tweet.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -11,7 +12,10 @@ export class ProfilePageComponent implements OnInit {
 
   fileURL: string | ArrayBuffer;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private tweetService: TweetService
+  ) {}
 
   ngOnInit(): void {
     this.userService.tryToLogin();
@@ -26,7 +30,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   get myTweets() {
-    return this.userService.getmyTweets()
+    return this.userService.getmyTweets();
   }
 
   selectFile(event) {
@@ -49,8 +53,18 @@ export class ProfilePageComponent implements OnInit {
         .subscribe((response) => {
           this.selectedFile = null;
           this.userService.getDetails();
-          this.userService.fetchMyTweets()
+          this.userService.fetchMyTweets();
         });
     });
+  }
+
+  likeTweet(myLike, tweetId: number) {
+    this.tweetService
+      .toggleLike(myLike, tweetId, this.user.id)
+      .subscribe((response) => this.userService.fetchMyTweets());
+  }
+
+  retweet() {
+    console.log('dsads');
   }
 }
