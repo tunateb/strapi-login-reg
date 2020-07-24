@@ -57,13 +57,28 @@ export class TweetDetailComponent implements OnInit {
   }
 
   likeTweet(myLike) {
-    this.tweetService.toggleLike(myLike, this.tweet.id, this.user.id)
-      .subscribe(response => {
-      this.tweetService.fetchTweet(this.tweet.id).subscribe(response => this.tweet = response)
-    })
+    this.tweetService
+      .toggleLike(myLike, this.tweet.id, this.user.id)
+      .subscribe((response) => {
+        this.tweetService
+          .fetchTweet(this.tweet.id)
+          .subscribe((response) => (this.tweet = response));
+      });
   }
 
   retweet() {
-    console.log('retweet')
+    console.log('retweet');
+  }
+
+  likeComment(myLike, commentId: number) {
+    this.commentService
+      .toggleLike(myLike, commentId, this.user.id)
+      .subscribe((response) => {
+        this.commentService.fetchComment(commentId).subscribe((response) => {
+          this.commentService
+            .fetchComments(this.tweet.id)
+            .subscribe((response: Comment[]) => (this.comments = response));
+        });
+      });
   }
 }

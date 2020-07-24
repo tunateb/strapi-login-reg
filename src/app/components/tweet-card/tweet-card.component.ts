@@ -14,13 +14,16 @@ export class TweetCardComponent implements OnInit {
   @Input() comment: Comment;
   @Input() me: User;
   @Output() onLike = new EventEmitter();
+  @Output() onCommentLike = new EventEmitter();
   @Output() onRetweet = new EventEmitter();
 
   avatarImg: string = 'assets/avatar-placeholder.png';
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // console.log(this.comment);
+  }
 
   get profileImg() {
     if (this.comment) {
@@ -37,6 +40,12 @@ export class TweetCardComponent implements OnInit {
   get likedByMe() {
     if (this.me) {
       return this.tweet.likes.find((like) => like.user === this.me.id);
+    }
+  }
+
+  get commentLikedByMe() {
+    if (this.me) {
+      return this.comment.likes.find((like) => like.user === this.me.id);
     }
   }
 }

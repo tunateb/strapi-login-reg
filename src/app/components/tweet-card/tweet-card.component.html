@@ -10,8 +10,27 @@
     <p class="tweet-text">
       {{ comment.text }}
     </p>
-    <p class="tweet-time">{{ comment.created_at | date: "dd/MM/yyyy" }}</p>
+     <div class="tweet-actions">
+    <div>
+      
+      <button
+        class="btn icon"
+        (click)="onCommentLike.emit(commentLikedByMe)"
+        [ngClass]="{ 'btn-secondary': !commentLikedByMe }"
+      >
+        <i class="far fa-heart"></i>
+        <span *ngIf="comment.likes.length"> {{ comment.likes.length }}</span>
+      </button>
+      <button class="btn btn-secondary icon" (click)="onRetweet.emit()">
+        <i class="fas fa-retweet"></i>
+      </button>
+    </div>
+    <p class="tweet-time">
+      {{ comment.created_at | date: "dd/MM/yyyy - hh:mm" }}
+    </p>
   </div>
+  </div>
+ 
 </div>
 
 <ng-template #tweetLayout>

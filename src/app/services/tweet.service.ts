@@ -32,7 +32,7 @@ export class TweetService {
   }
 
   fetchTweet(tweetId: number): Observable<any> {
-    return this.http.get(`${`${env.tweetsApiURL}`}/${tweetId}`);
+    return this.http.get(`${env.tweetsApiURL}/${tweetId}`);
   }
 
   setTweet(updatedTweet) {

@@ -33,6 +33,9 @@
       *ngFor="let comment of comments"
       [comment]="comment"
       [tweet]="tweet"
+      [me] = "user"
+      (onCommentLike) = "likeComment($event, comment.id)"
+      (onRetweet) = "retweet()"
     ></app-tweet-card>
   </div>
 </div>
