@@ -72,7 +72,7 @@
     [tweet]="tweet"
     *ngFor="let tweet of tweets"
     (onLike)="likeTweet($event, tweet.id)"
-    (onRetweet)="retweet(tweet.id)"
+    (onRetweet)="retweet($event, tweet.id)"
     [me] = "user"
   >
   </app-tweet-card>

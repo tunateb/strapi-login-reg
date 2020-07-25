@@ -16,6 +16,7 @@ export class TweetCardComponent implements OnInit {
   @Output() onLike = new EventEmitter();
   @Output() onCommentLike = new EventEmitter();
   @Output() onRetweet = new EventEmitter();
+  @Output() onCommentRetweet = new EventEmitter();
 
   avatarImg: string = 'assets/avatar-placeholder.png';
 
@@ -43,9 +44,23 @@ export class TweetCardComponent implements OnInit {
     }
   }
 
+  get retweetedByMe() {
+    if (this.me) {
+      return this.tweet.retweets.find((retweet) => retweet.user === this.me.id);
+    }
+  }
+
   get commentLikedByMe() {
     if (this.me) {
       return this.comment.likes.find((like) => like.user === this.me.id);
+    }
+  }
+
+  get commentRetweetedByMe() {
+    if (this.me) {
+      return this.comment.retweets.find(
+        (retweet) => retweet.user === this.me.id
+      );
     }
   }
 }

@@ -66,13 +66,31 @@ export class TweetDetailComponent implements OnInit {
       });
   }
 
-  retweet() {
-    console.log('retweet');
+  retweet(myRetweet) {
+    this.tweetService
+      .toggleRetweet(myRetweet, this.tweet.id, this.user.id)
+      .subscribe((response) => {
+        this.tweetService
+          .fetchTweet(this.tweet.id)
+          .subscribe((response) => (this.tweet = response));
+      });
   }
 
   likeComment(myLike, commentId: number) {
     this.commentService
       .toggleLike(myLike, commentId, this.user.id)
+      .subscribe((response) => {
+        this.commentService.fetchComment(commentId).subscribe((response) => {
+          this.commentService
+            .fetchComments(this.tweet.id)
+            .subscribe((response: Comment[]) => (this.comments = response));
+        });
+      });
+  }
+
+  retweetComment(myRetweet, commentId: number) {
+    this.commentService
+      .toggleRetweet(myRetweet, commentId, this.user.id)
       .subscribe((response) => {
         this.commentService.fetchComment(commentId).subscribe((response) => {
           this.commentService

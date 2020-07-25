@@ -14,7 +14,16 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, RegisterPageComponent, HomeComponent, TweetDetailComponent, TweetCardComponent, ProfilePageComponent, FileUploadComponent],
+  declarations: [
+    AppComponent,
+    LoginPageComponent,
+    RegisterPageComponent,
+    HomeComponent,
+    TweetDetailComponent,
+    TweetCardComponent,
+    ProfilePageComponent,
+    FileUploadComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

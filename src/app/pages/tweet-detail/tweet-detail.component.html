@@ -3,7 +3,7 @@
     [tweet]="tweet"
     [me]="user"
     (onLike)="likeTweet($event)"
-    (onRetweet)="retweet()"
+    (onRetweet)="retweet($event)"
   ></app-tweet-card>
 
   <div>
@@ -35,7 +35,7 @@
       [tweet]="tweet"
       [me] = "user"
       (onCommentLike) = "likeComment($event, comment.id)"
-      (onRetweet) = "retweet()"
+      (onCommentRetweet) = "retweetComment($event, comment.id)"
     ></app-tweet-card>
   </div>
 </div>

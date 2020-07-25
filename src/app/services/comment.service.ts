@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { UserService } from './user.service';
 import { environment as env } from '../../environments/environment';
 import { LikeService } from './like.service';
+import { RetweetService } from './retweet.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,8 @@ export class CommentService {
   constructor(
     private http: HttpClient,
     private userService: UserService,
-    private likeService: LikeService
+    private likeService: LikeService,
+    private retweetService:RetweetService
   ) {}
 
   fetchComments(tweetId: number): Observable<any> {
@@ -46,6 +48,14 @@ export class CommentService {
       return this.likeService.dislikeTweet(myLike.id);
     } else {
       return this.likeService.likeComment(commentId, userId);
+    }
+  }
+
+  toggleRetweet(myRetweet, commentId, userId) {
+    if (myRetweet) {
+      return this.retweetService.removeRetweet(myRetweet.id);
+    } else {
+      return this.retweetService.retweetComment(commentId, userId);
     }
   }
 }

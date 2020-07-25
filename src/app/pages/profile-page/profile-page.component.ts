@@ -64,7 +64,9 @@ export class ProfilePageComponent implements OnInit {
       .subscribe((response) => this.userService.fetchMyTweets());
   }
 
-  retweet() {
-    console.log('dsads');
+  retweet(myRetweet, tweetId: number) {
+    this.tweetService
+      .toggleRetweet(myRetweet, tweetId, this.user.id)
+      .subscribe((response) => this.userService.fetchMyTweets());
   }
 }

@@ -109,7 +109,12 @@ export class HomeComponent implements OnInit {
       );
   }
 
-  retweet(tweetId: number) {
-    console.log(tweetId);
+  retweet(myRetweet, tweetId: number) {
+    this.tweetService
+      .toggleRetweet(myRetweet, tweetId, this.user.id)
+      .subscribe((response) => {
+        this.tweetService.fetchTweet(tweetId)
+        .subscribe((response) => this.tweetService.setTweet(response))
+      });
   }
 }
