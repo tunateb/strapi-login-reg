@@ -9,5 +9,6 @@ export type User = {
   updated_at?: string;
   username: string;
   profileImgUrl?: string;
-  profileImg?:any
+  profileImg?: any;
+  follows?: any;
 };

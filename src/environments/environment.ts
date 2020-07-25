@@ -9,5 +9,6 @@ export const environment = {
   tweetsApiURL: `${baseURL}/tweets`,
   uploadApiURL: `${baseURL}/upload`,
   likeApiURL: `${baseURL}/likes`,
-  retweetApiURL: `${baseURL}/retweets`
+  retweetApiURL: `${baseURL}/retweets`,
+  followApiURL: `${baseURL}/follows`
 };

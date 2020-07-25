@@ -1,0 +1,29 @@
+<div class="user-list-wrapper">
+  <h4>Users</h4>
+  <hr />
+  <div class="user-list-card" *ngFor="let user of users">
+    <div class="user-details">
+      <img
+        [src]="'http://localhost:1337' + (user.profileImg || {}).url"
+        (error)="replaceWithDefaultImg($event)"
+        alt=""
+        class="avatar"
+      />
+      <div>
+        <p class="username">{{ user.username }}</p>
+        <span class="email">{{ user.email }}</span>
+      </div>
+    </div>
+
+    <!-- <button
+      class="btn"
+      [ngClass]="{ 'btn-secondary': !myFollows.includes(user.id) }"
+      (click)="toggleFollow(user.id)"
+    >
+      {{ myFollows.includes(user.id) ? "Following" : "Follow" }}
+    </button> -->
+    <app-button (click)="toggleFollow(user.id)" [secondary]="!myFollows.includes(user.id)">
+      {{ myFollows.includes(user.id) ? "Following" : "Follow" }}
+    </app-button>
+  </div>
+</div>

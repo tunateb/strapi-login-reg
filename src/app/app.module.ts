@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,8 @@ import { TweetDetailComponent } from './pages/tweet-detail/tweet-detail.componen
 import { TweetCardComponent } from './components/tweet-card/tweet-card.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { UserListMenuComponent } from './components/user-list-menu/user-list-menu.component';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,10 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     TweetCardComponent,
     ProfilePageComponent,
     FileUploadComponent,
+    UserListMenuComponent,
+    ButtonComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

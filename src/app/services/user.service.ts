@@ -11,6 +11,7 @@ import { Tweet } from '../types/tweet.type';
 export class UserService {
   private user: User;
   private userTweets: Tweet[];
+  private users: User[];
 
   token = window.localStorage.getItem('token');
 
@@ -54,12 +55,23 @@ export class UserService {
     this.http
       .get(`${env.usersApiURL}/${this.user.id}`, httpOptions)
       .subscribe((response: any) => {
+        this.user.follows = response.follows;
         if (response.profileImg) {
           this.user.profileImgUrl = `${env.baseApiURL}${response.profileImg.url}`;
         } else {
           this.user.profileImgUrl = 'assets/avatar-placeholder.png';
         }
       });
+  }
+
+  fetchUsers() {
+    return this.http
+      .get(`${env.usersApiURL}?_limit=5`)
+      .subscribe((response: User[]) => (this.users = response));
+  }
+
+  getUsers() {
+    return this.users;
   }
 
   fetchMyTweets() {
@@ -70,6 +82,13 @@ export class UserService {
 
   getmyTweets() {
     return this.userTweets;
+  }
+
+  getMyFollows() {
+    if (this.user && this.user.follows) {
+      return this.user.follows.map((follow) => follow.followingUser);
+    }
+    return [];
   }
 
   saveImg(file) {

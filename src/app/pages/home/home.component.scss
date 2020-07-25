@@ -28,3 +28,16 @@
   bottom: 4px;
   right: 0;
 }
+
+.content-wrapper {
+  display: flex;
+
+  .side-menu {
+    margin: 10px 0 0 40px;
+  }
+}
+
+.tweets-wrapper {
+  max-width: 600px;
+  margin: auto;
+}

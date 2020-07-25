@@ -1,0 +1,38 @@
+.user-list-wrapper {
+    border-radius: 4px;
+    box-shadow: 0 6px 6px rgba(0,0,0,0.2);
+    margin: 10 0 15px 20px;
+    padding: 20px;
+}
+
+hr {
+    margin: 10px 0;
+}
+
+.user-list-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .username {
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    .email {
+        font-weight: 300;
+        font-size: 12px;
+    }
+}
+
+.user-details {
+    display: flex;
+    align-items: center;
+}
+

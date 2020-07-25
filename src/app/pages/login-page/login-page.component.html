@@ -1,5 +1,5 @@
 <div class="card">
-  <form (submit)="login()">
+  <!-- <form (submit)="login()">
     <div class="form-control">
       <label for="identifier">
         Email or Username
@@ -26,6 +26,30 @@
 
     <div class="form-actions">
       <button class="btn" type="submit" [disabled] = "isLoading"> {{isLoading ? 'Loading...' : 'Login'}} </button>
+    </div>
+  </form> -->
+
+  <form [formGroup]="loginForm" (ngSubmit) = "login()">
+    <div class="form-control">
+      <label for="identifier"> Email/Username
+        <input type="text" name="identifier" formControlName="identifier" />
+        <div class="error-wrapper" *ngIf = "loginForm.controls.identifier.touched && identifierErrors">
+          <p *ngIf = "identifierErrors.required">*This field is required</p>
+          <p *ngIf = "identifierErrors.maxlength">*Max. 10 characters</p>
+          <p *ngIf = "identifierErrors.minlength">*Min. 3 characters (You entered {{identifierErrors.minlength.actualLength}})</p>
+        </div>
+      </label>
+    </div>
+
+    <div class="form-control">
+      <label for="password"> Password
+        <input type="password" name="password" formControlName="password" />
+      </label>
+    </div>
+    <div class="form-actions">
+      <button class="btn" type="submit" [disabled]="isLoading">
+        {{ isLoading ? "Loading..." : "Login" }}
+      </button>
     </div>
   </form>
 </div>

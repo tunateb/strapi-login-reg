@@ -67,15 +67,22 @@
   </form>
 </div>
 
-<div *ngIf="tweets; else loading">
-  <app-tweet-card
-    [tweet]="tweet"
-    *ngFor="let tweet of tweets"
-    (onLike)="likeTweet($event, tweet.id)"
-    (onRetweet)="retweet($event, tweet.id)"
-    [me] = "user"
-  >
-  </app-tweet-card>
-</div>
+<section class="content-wrapper">
+  <main *ngIf="tweets; else loading" class="tweets-wrapper">
+    <app-tweet-card
+      [tweet]="tweet"
+      *ngFor="let tweet of tweets"
+      (onLike)="likeTweet($event, tweet.id)"
+      (onRetweet)="retweet($event, tweet.id)"
+      [me]="user"
+    >
+    </app-tweet-card>
+  </main>
+
+  <aside class="side-menu" *ngIf = "user">
+    <app-user-list-menu></app-user-list-menu>
+  </aside>
+
+</section>
 
 <ng-template #loading> <h2>Loading...</h2> </ng-template>

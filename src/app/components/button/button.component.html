@@ -1,0 +1,11 @@
+<button
+  [name]="name"
+  [id]="id"
+  [type]="type"
+  class="btn"
+  (moouseenter)="hover.emit($event)"
+  (click)="onClick.emit($event)"
+  [ngClass]="{'btn-secondary': secondary}"
+>
+  <ng-content></ng-content>
+</button>
